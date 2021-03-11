@@ -1,0 +1,30 @@
+<div class="roomDetails mt-5">
+    <h2>Room details</h2>
+      <a class="btn btn-small btn-warning" (click)="editRoom()" *ngIf="isAdminUser">edit</a>
+      <a class="btn btn-small btn-warning ml-1" (click)="deleteRoom()" *ngIf="isAdminUser">delete</a>
+    <div class="row">
+      <div class="col-12">
+    <div class="bg-warning p-5" *ngIf="message">{{message}}</div>
+    <div class="details">
+    <table>
+      <tr>
+        <!-- " ? " => know as null safe opertor -->
+        <td>id</td><td>{{selectedRoom?.id}}</td>
+      </tr>
+      <tr>
+        <td>name</td><td>{{selectedRoom?.name}}</td>
+      </tr>
+      <tr>
+        <td>location</td><td>{{selectedRoom?.location}}</td>
+      </tr>
+    </table>
+    <h4>This room can accomodate:</h4>
+    <table *ngIf="selectedRoom.capacities">
+      <tr *ngFor="let layoutCapacity of selectedRoom.capacities"> <!-- repeat the tr for each capacity -->
+        <td>{{layoutCapacity.layout}}</td><td>{{layoutCapacity.capacity}}</td>
+      </tr>
+    </table>
+  </div>
+    </div>
+  </div>
+  </div>

@@ -1,0 +1,14 @@
+.userDetails {
+    padding: 1rem;
+    background: whitesmoke;
+    height: 80vh;
+}
+
+.details {
+    margin-top: 1rem;
+    background-color: white;
+    border: transparent 1px solid;
+    border-radius: 1rem;
+    padding: 1rem;
+    box-shadow: 6px 12px 13px #d8d5d5;
+}

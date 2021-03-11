@@ -1,0 +1,63 @@
+<h1>{{action == 'add' ? 'Add' : 'Edit'}} User</h1>
+<!-- {{action}} -->
+
+<div *ngIf="message" class="bg-warning p-5">{{message}}</div>
+
+<form #userForm="ngForm">
+
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input 
+      type="text" 
+      class="form-control" 
+      id="name" placeholder="user name" 
+      [(ngModel)]="selectedUser.name" 
+      name="name" 
+      required #nameField="ngModel" 
+      (change)="checkIfNameIsValid()">
+    <div *ngIf="nameField.invalid && nameField.touched" class="alert alert-danger">Name is required</div>
+    <div *ngIf="!nameIsValid && nameField.touched" class="alert alert-danger">Name cannot be blank</div>
+
+  </div>
+
+  <!-- <div class="form-group" *ngIf="user.id == null"> only show this field on adding a user -->
+  <div class="form-group" *ngIf="action === 'add'">
+    <label for="password">Password</label>
+    <input type="password" 
+      class="form-control" 
+      id="password" 
+      placeholder="password" 
+      [(ngModel)]="password" 
+      name="password" 
+      (change)="checkIfPasswordsAreValid()"
+      required 
+      #pass1="ngModel">
+    <div class="alert alert-danger" [hidden]="pass1.valid || pass1.untouched">Passwords is required</div>
+    <div class="alert alert-danger" [hidden]="passwordsAreValid || pass1.untouched">Passwords and Confirm Password cannot be blank</div>
+
+    <label for="password2">Confirm Password</label>
+    <input type="password"
+      class="form-control"
+      id="password2" 
+      placeholder="password" 
+      [(ngModel)]="password2" 
+      name="password2" 
+      (change)="checkIfPasswordsAreValid()"
+      required 
+      #pass2="ngModel">
+    <div class="alert alert-danger" [hidden]="passwordsMatch">The passwords must match</div>
+  </div>
+  
+  <button 
+    type="button"
+    (click)="onSubmit()" 
+    class="btn btn-primary" 
+    >Save
+  </button>
+  
+</form>
+
+<!-- 
+  [disabled]="userForm.invalid || !nameIsValid || !passwordsAreValid || !passwordsMatch"
+[(ngModel)]="formUser.name"
+      [(ngModel)]="selectedFrom.name"  -->
